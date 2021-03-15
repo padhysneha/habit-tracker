@@ -9,6 +9,7 @@ import {
   Toolbar,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
+import decode from "jwt-decode";
 
 function Header() {
   const history = useHistory();
@@ -25,6 +26,11 @@ function Header() {
 
   useEffect(() => {
     const token = user?.token;
+    if (token) {
+      const decodedToken = decode(token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
   console.log("user", user);

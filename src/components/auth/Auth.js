@@ -7,6 +7,7 @@ import useStyles from "./styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Icon from "./Icon";
 import { useHistory } from "react-router-dom";
+import { signup, signin } from "../../actions/auth";
 import {
   Button,
   Paper,
@@ -17,24 +18,41 @@ import {
   Container,
 } from "@material-ui/core";
 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+}; //name of input field should be same as states
+
 function Auth() {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const [formData, setFormData] = useState(initialState);
   const handleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword); //when we change the prev state we should have a callback function
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isSignup) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
+  };
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value }); //e.target.name  is different for different input fields
+  };
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassword(false);
+    setShowPassword(false);
   };
 
   const googleSuccess = async (res) => {
@@ -74,7 +92,7 @@ function Auth() {
                     half
                   />
                   <Input
-                    name="lastname"
+                    name="lastName"
                     label="Last Name"
                     handleChange={handleChange}
                     half

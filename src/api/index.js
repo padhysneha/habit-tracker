@@ -1,12 +1,23 @@
 import axios from "axios";
 
-const url = "http://localhost:4000/habits";
+const API = axios.create({ baseURL: "http://localhost:4000" });
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem("profile")) {
+    req.headers.authorization = `Bearer ${
+      JSON.parse(localStorage.getItem("profile")).token
+    }`;
+  }
+  return req;
+});
+export const fetchHabits = () => API.get("/habits");
 
-export const fetchHabits = () => axios.get(url);
-
-export const createHabit = (newHabit) => axios.post(url, newHabit);
+export const createHabit = (newHabit) => API.post("/habits", newHabit);
 
 export const updateHabit = (id, updatedHabit) =>
-  axios.patch(`${url}/${id}`, updatedHabit);
+  API.patch(`/habits/${id}`, updatedHabit);
 
-export const deleteHabit = (id) => axios.delete(`${url}/${id}`);
+export const deleteHabit = (id) => API.delete(`/habits/${id}`);
+
+export const signin = (formData) => API.post("/users/signin", formData);
+
+export const signup = (formData) => API.post("/users/signup", formData);

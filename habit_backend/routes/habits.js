@@ -5,12 +5,13 @@ import {
   updateHabit,
   deleteHabit,
 } from "../controllers/habits.js";
+import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
 router.get("/", getHabits);
-router.post("/", createHabit);
-router.patch("/:id", updateHabit);
-router.delete("/:id", deleteHabit);
+router.post("/", auth, createHabit);
+router.patch("/:id", auth, updateHabit);
+router.delete("/:id", auth, deleteHabit);
 
 export default router;

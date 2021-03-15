@@ -5,6 +5,9 @@ import { createHabit, updateHabit } from "../actions/habits";
 
 function Form({ currentId, setCurrentId }) {
   const dispatch = useDispatch();
+
+  const user = JSON.parse(localStorage.getItem("profile"));
+
   const habit = useSelector((state) =>
     currentId ? state.habits.find((p) => p._id == currentId) : null
   );

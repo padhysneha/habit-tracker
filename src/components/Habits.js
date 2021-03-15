@@ -1,17 +1,21 @@
 import React from "react";
 import Habit from "./Habit";
 import { useSelector } from "react-redux";
-
+import { Grid, CircularProgress } from "@material-ui/core";
 function Habits({ setCurrentId }) {
   const habits = useSelector((state) => state.habits);
 
-  return (
+  return !habits.length ? (
+    <CircularProgress />
+  ) : (
     <div className="todo-container">
-      {habits.map((habit) => (
-        <div key={habit._id}>
-          <Habit habit={habit} setCurrentId={setCurrentId} />
-        </div>
-      ))}
+      <ul>
+        {habits.map((habit) => (
+          <li key={habit._id}>
+            <Habit habit={habit} setCurrentId={setCurrentId} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

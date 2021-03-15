@@ -1,29 +1,27 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteHabit } from "../actions/habits";
+import { Button } from "@material-ui/core";
 function Habit({ habit, setCurrentId }) {
+  const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
-  // const completeHandler = () => {
-  //   setTodos(
-  //     todos.map((item) => {
-  //       if (item.id === todo.id) {
-  //         return {
-  //           ...item,
-  //           completed: !item.completed,
-  //         };
-  //       }
-  //       return item;
-  //     })
-  //   );
-  // };
 
   return (
     <div className="todo">
-      <h3>
-        {habit.habit}
-        <button onClick={() => setCurrentId(habit._id)}>edit</button>
-        <button onClick={() => dispatch(deleteHabit(habit._id))}>delete</button>
-      </h3>
+      {habit.habit}
+      {(user?.result?.googleId == habit?.creator ||
+        user?.result?._id == habit?.creator) && (
+        <Button onClick={() => setCurrentId(habit._id)}>edit</Button>
+      )}
+      {(user?.result?.googleId == habit?.creator ||
+        user?.result?._id == habit?.creator) && (
+        <Button
+          disabled={!user?.result}
+          onClick={() => dispatch(deleteHabit(habit._id))}
+        >
+          delete
+        </Button>
+      )}
     </div>
   );
 }

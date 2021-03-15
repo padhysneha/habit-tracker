@@ -12,7 +12,11 @@ export const getHabits = async (req, res) => {
 
 export const createHabit = async (req, res) => {
   const habit = req.body;
-  const newHabit = new Habit(habit);
+  const newHabit = new Habit({
+    ...habit,
+    creator: req.userId,
+    createdAt: new Date().toISOString(),
+  });
 
   try {
     await newHabit.save();
