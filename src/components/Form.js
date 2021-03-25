@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createHabit, updateHabit } from "../actions/habits";
-
+import { subscribe } from "../actions/notification";
 function Form({ currentId, setCurrentId }) {
   const dispatch = useDispatch();
 
@@ -34,6 +34,7 @@ function Form({ currentId, setCurrentId }) {
     if (habits.habit !== "") {
       dispatch(createHabit(habits));
     }
+
     clear();
   };
 

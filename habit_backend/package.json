@@ -5,7 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+      "build": "rm -rf build/ && react-scripts build && npm run-script worker",
+  "sw-epilog": "cat src/components/worker.js >> build/service-worker.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +21,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^6.1.0"
+    "passport-local-mongoose": "^6.1.0",
+    "web-push": "^3.4.4"
   }
 }
