@@ -16,10 +16,12 @@ export const createHabit = async (req, res) => {
     ...habit,
     creator: req.userId,
     createdAt: new Date().toISOString(),
+    time: req.body.time,
   });
 
   try {
     await newHabit.save();
+    console.log(newHabit);
     res.status(201).json(newHabit);
   } catch (err) {
     res.status(409).json({ message: err.message });

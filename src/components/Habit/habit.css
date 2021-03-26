@@ -1,0 +1,127 @@
+.todo {
+  /*border*/
+
+  border-radius: 20px;
+  -moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%);
+  margin: 0.5rem;
+  background-color: red;
+  font-size: 1.5rem;
+  transition: all 1.5s ease;
+}
+
+.container {
+  /*el fondito azul*/
+  display: flex;
+  justify-content: center;
+  background-color: #edf2f4;
+  height: 220px;
+}
+.container .chart-container {
+  padding: 20px; /*distancia del techo*/
+}
+.container .chart-container .back {
+  stroke: #f1dede;
+  stroke-width: 15; /*el ancho del circulo*/
+}
+.container .chart-container .front {
+  stroke: #d496a7;
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke-dasharray: 395.84;
+  transform: rotate(-90deg);
+  transform-origin: 5.8em; /*position*/
+}
+.container .chart-container .text {
+  font-size: 35px;
+  fill: #063045;
+}
+
+@keyframes fill {
+  to {
+    stroke-dasharray: 0, 1000000;
+  }
+}
+
+@keyframes display {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.front {
+  animation: fill 2s reverse;
+}
+.text {
+  opacity: 0;
+  transform: translateY(30%);
+  animation: display 2s forwards;
+}
+
+.habit-container {
+  background-color: #c79538;
+  margin-top: 0;
+  max-width: 300px;
+  border-radius: 27px; /*depth idea*/
+  margin-left: 2.5rem;
+  box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.3) !important;
+  border-color: black;
+  margin-bottom: 35px;
+  transform: translateY(20px);
+  transition: 0.5s;
+  transition-delay: calc(0.1s * var());
+}
+
+.habit-container:hover {
+  transform: translateY(0px);
+}
+
+.btn-wrap {
+  background-color: white;
+  justify-content: space-evenly;
+  box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.15) !important;
+}
+
+.check-btn {
+  padding: 1px !important;
+  color: #f5b748 !important;
+}
+
+.change {
+  background-color: chartreuse;
+}
+
+.notif-btn {
+  padding: 1px !important;
+  color: #f5b748 !important;
+}
+
+.del-btn {
+  padding: 1px !important;
+  color: #f5b748 !important;
+}
+.btn {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+
+  position: relative;
+  transition: width 0.2s ease-in-out;
+  color: white;
+  background-color: blue;
+  text-align: center;
+}
+
+/*Containd the deck of cards*/
+/*needs to be placed on grids*/
+.todo-container {
+  /*  display: flex;
+    flex-direction: row;*/
+
+  margin-left: inherit !important;
+}

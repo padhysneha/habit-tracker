@@ -8,6 +8,7 @@ var habitSchema = new mongoose.Schema({
   },
   completed: Boolean,
   creator: String,
+  time: String,
 });
 
 const Habit = mongoose.model("Habit", habitSchema);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Header from "..//Header";
-import Form from "../Form";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Form from "../Form/Form";
 import { useDispatch } from "react-redux";
 import { getHabits } from "../../actions/habits";
-import Habits from "../Habits";
+import Habits from "../Habit/Habits";
 
 function Home() {
   const dispatch = useDispatch();
@@ -14,9 +14,21 @@ function Home() {
 
   return (
     <div>
-      <Header />
-      <Form currentId={currentId} setCurrentId={setCurrentId} />
-      <Habits setCurrentId={setCurrentId} />
+      <Router>
+        <Switch>
+          <Route
+            path="/form"
+            component={() => (
+              <Form currentId={currentId} setCurrentId={setCurrentId} />
+            )}
+          />
+          <Route
+            path="/habits"
+            exact
+            component={() => <Habits setCurrentId={setCurrentId} />}
+          />
+        </Switch>
+      </Router>
     </div>
   );
 }

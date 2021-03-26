@@ -8,14 +8,16 @@ function Habits({ setCurrentId }) {
   return !habits.length ? (
     <CircularProgress />
   ) : (
-    <div className="todo-container">
-      <ul>
+    <div>
+      <Grid container>
         {habits.map((habit) => (
-          <li key={habit._id}>
-            <Habit habit={habit} setCurrentId={setCurrentId} />
-          </li>
+          <Grid>
+            <div key={habit._id}>
+              <Habit habit={habit} setCurrentId={setCurrentId} />
+            </div>
+          </Grid>
         ))}
-      </ul>
+      </Grid>
     </div>
   );
 }
