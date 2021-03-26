@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "build": "rm -rf build/ && react-scripts build && npm run-script worker",
-  "sw-epilog": "cat src/components/worker.js >> build/service-worker.js"
+    "build": "rm -rf build/ && react-scripts build && npm run-script worker",
+    "sw-epilog": "cat src/components/worker.js >> build/service-worker.js"
   },
   "author": "",
   "license": "ISC",
