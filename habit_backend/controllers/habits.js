@@ -92,6 +92,6 @@ export const habitStreak = async (req, res) => {
     }
     habit.save();
   }
-
+  //
   res.status(201).json(habit);
 };
