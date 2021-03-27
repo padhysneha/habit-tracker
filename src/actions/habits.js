@@ -37,3 +37,13 @@ export const deleteHabit = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const habitStreak = (habit, isCompleted) => async (dispatch) => {
+  try {
+    const { data } = await api.habitStreak(habit, isCompleted);
+    console.log(data);
+    dispatch({ type: "STREAK", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};

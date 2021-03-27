@@ -9,6 +9,15 @@ var habitSchema = new mongoose.Schema({
   completed: Boolean,
   creator: String,
   time: String,
+  streak: {
+    type: Number,
+    default: 0,
+  },
+  streakDate: Date,
+  prevDate: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 const Habit = mongoose.model("Habit", habitSchema);

@@ -11,6 +11,10 @@ export default (habits = [], action) => {
       return action.payload;
     case "CREATE":
       return [...habits, action.payload];
+    case "STREAK":
+      return habits.map((habit) =>
+        habit._id == action.payload._id ? action.payload : habit
+      );
     default:
       return habits;
   }

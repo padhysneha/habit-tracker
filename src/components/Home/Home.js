@@ -10,6 +10,7 @@ function Home() {
   const [currentId, setCurrentId] = useState(null);
   useEffect(() => {
     dispatch(getHabits());
+    console.log("okay home comp");
   }, [dispatch, currentId]);
 
   return (

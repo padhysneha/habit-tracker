@@ -23,3 +23,6 @@ export const signin = (formData) => API.post("/users/signin", formData);
 export const signup = (formData) => API.post("/users/signup", formData);
 
 export const subscribe = (subscription) => API.post("/subscribe", subscription);
+
+export const habitStreak = (habit) =>
+  API.patch(`/habits/streak/${habit._id}`, habit);

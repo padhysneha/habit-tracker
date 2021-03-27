@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Grid, CircularProgress } from "@material-ui/core";
 function Habits({ setCurrentId }) {
   const habits = useSelector((state) => state.habits);
-
+  const user = JSON.parse(localStorage.getItem("profile"));
   return !habits.length ? (
     <CircularProgress />
   ) : (
@@ -12,9 +12,12 @@ function Habits({ setCurrentId }) {
       <Grid container>
         {habits.map((habit) => (
           <Grid>
-            <div key={habit._id}>
-              <Habit habit={habit} setCurrentId={setCurrentId} />
-            </div>
+            {(user?.result?.googleId == habit?.creator ||
+              user?.result?._id == habit?.creator) && (
+              <div key={habit._id}>
+                <Habit habit={habit} setCurrentId={setCurrentId} />
+              </div>
+            )}
           </Grid>
         ))}
       </Grid>
