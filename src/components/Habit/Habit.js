@@ -75,8 +75,9 @@ function Habit({ habit, setCurrentId }) {
     <div className="habit-container">
       <Card className={classes.root}>
         <CardContent>{habit.habit}</CardContent>
-        {/* <CardContent> {moment(habit.createdAt).format("ll")}</CardContent>
-        <CardContent>Time:{moment(habit.time).format("LT")}</CardContent> */}
+        <CardContent> {moment(habit.createdAt).format("ll")}</CardContent>
+        <CardContent>Time:{moment(habit.time).format("LT")}</CardContent>
+        <CardContent>Streak:{habit.streak}</CardContent>
         <CardContent>
           <div class="container">
             <svg width="350" height="250" class="chart-container">
